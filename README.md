@@ -34,6 +34,3 @@ Read the encryption spec [here](ENCRYPTION.md).
 
 Read the interopability spec [here](INTEROPERABILITY.md).
 
-## Acknowledgements
-
-Special thanks to Jordan Sexton (Solana Pay), Sebastian Bohr (SPL Governance / Realms), Noah Prince (Strata Protocol), Alan O'Donnell (Anchor core dev), and others for their input.
