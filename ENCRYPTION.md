@@ -24,7 +24,7 @@ The first two methods are the familiar transaction signing methods for submittin
 
 ### The Sollet `diffieHellman` API
 
-The [Sollet wallet](https://sollet.io) is the only Solana wallet that exposes an encryption method. It does so via the `diffieHellman` method:
+The [Sollet wallet](https://sollet.io) is the only Solana wallet that exposes an encryption method. It does so via the [`diffieHellman` method](https://github.com/project-serum/spl-token-wallet/tree/0a4c2a00c09f2ce690dce686990a32b15e836f03/src/utils/diffie-hellman):
 
 ```javascript
 async diffieHellman(publicKey: UInt8Array): Promise<{publicKey: UInt8Array, secretKey: UInt8Array}>
