@@ -1,10 +1,10 @@
 # Message Encryption
 
-End-to-end encryption is a necessary component of any secure messaging protocol. In web3, one of the simplest techniques for achieving end-to-end encryption is the [Diffie-Hellman key exchange scheme](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange).
+End-to-end encryption is a necessary part of any secure messaging protocol. In web3, one of the simplest techniques for achieving end-to-end encryption is the [Diffie-Hellman key exchange scheme](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange).
 
 ![Diffie-Hellman key exchange. Source: wikipedia.org](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Public_key_shared_secret.svg/500px-Public_key_shared_secret.svg.png)
 
-In this scheme, two individuals who wish to message with each other are able to derive a shared secret key using a combination of their own private key and the other participant's public key. A symmetric encryption algorithm may then be used without the need to communicate any sensitive information over a network.
+In this scheme, two individuals who wish to message with each other are able to derive a shared secret key using a combination of their own private key and the other participant's public key. This shared secret key may then be used in an encryption/decryption algorithm without the need to communicate any sensitive information over a network.
 
 ## Disclaimer
 
@@ -54,6 +54,7 @@ Alternatively, if we treat the shared secret key as private information, wallets
 
 ```javascript
 async encryptMessage(publicKey: Uint8Array, message: Uint8Array, nonce: Uint8Array): Promise<{encryptedMessage: Uint8Array}>
+
 async decryptMessage(publicKey: Uint8Array, encryptedMessage: Uint8Array, nonce: Uint8Array): Promise<{message: Uint8Array}>
 ```
 
@@ -61,3 +62,10 @@ These functions, while more opinionated about the intended usage of the shared s
 
 ## Limitations & looking ahead
 
+The Diffie-Hellman scheme is extendable beyond the one-to-one exchange described above, but [increases significantly in complexity](https://crypto.stackexchange.com/a/1027): work must be done by every participant any time a new member is added.
+
+This poses a limitation on the user experience in web3, especially if messages and state are stored on-chain. Hence, encrypted group chats, especially those with fluid membership, may be difficult to manage.
+
+### Hub nodes
+
+Coming soon.
