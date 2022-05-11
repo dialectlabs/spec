@@ -27,7 +27,8 @@ The first two methods are the familiar transaction signing methods for submittin
 The [Sollet wallet](https://sollet.io) is the only Solana wallet that exposes an encryption method. It does so via the [`diffieHellman` method](https://github.com/project-serum/spl-token-wallet/tree/0a4c2a00c09f2ce690dce686990a32b15e836f03/src/utils/diffie-hellman):
 
 ```javascript
-async diffieHellman(publicKey: UInt8Array): Promise<{publicKey: UInt8Array, secretKey: UInt8Array}>
+// uses the wallet instance's privateKey
+async diffieHellman(publicKey: UInt8Array): Promise<{publicKey: UInt8Array, secretKey: UInt8Array}> {}
 ```
 
 However, this `diffieHellman` method is experimental, is not intended for production use, and returns keys in a form that poses a security risk. Specifically, it converts an `Ed25519` keypair & public key to a `Curve25519` keypair & public key, which is an intermediate step toward generating the shared secret key used for encryption.
@@ -39,7 +40,8 @@ This intermediate representation is reversible, and therefore the sollet `diffie
 We propose the addition of an alternative method to wallet APIs for performing encryption (which would replace the Sollet `diffieHellman` method):
 
 ```javascript
-async diffieHellman(publicKey: Uint8Array): Promise<secretKey: Uint8Array>
+// uses the wallet instance's privateKey
+async diffieHellman(publicKey: Uint8Array): Promise<secretKey: Uint8Array> {}
 ```
 
 Rather than returning the `Curve25519` representation of the user's keypair, this method returns the derived, shared secret key.
@@ -53,9 +55,9 @@ In a mobile wallet runtime with private key custody, the private key is never be
 Alternatively, if we treat the shared secret key as private information, wallets could instead expose a direct encryption and decryption methods that take the encryptable payload or encrypted payload respectively:
 
 ```javascript
-async encryptMessage(publicKey: Uint8Array, message: Uint8Array, nonce: Uint8Array): Promise<{encryptedMessage: Uint8Array}>
-
-async decryptMessage(publicKey: Uint8Array, encryptedMessage: Uint8Array, nonce: Uint8Array): Promise<{message: Uint8Array}>
+// both methods use the wallet instance's privateKey
+async encryptMessage(publicKey: Uint8Array, message: Uint8Array, nonce: Uint8Array): Promise<{encryptedMessage: Uint8Array}> {}
+async decryptMessage(publicKey: Uint8Array, encryptedMessage: Uint8Array, nonce: Uint8Array): Promise<{message: Uint8Array}> {}
 ```
 
 These functions, while more opinionated about the intended usage of the shared secret key, have the added benefit of never exposing the shared secret key to any third party code executing in the runtime.
