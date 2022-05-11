@@ -36,7 +36,7 @@ This intermediate representation is reversible, and therefore the sollet `diffie
 
 ## Solution
 
-We propose the addition of an alternative method to wallet APIs for performing encryption, which would replace the `diffieHellman` method:
+We propose the addition of an alternative method to wallet APIs for performing encryption (which would replace the Sollet `diffieHellman` method):
 
 ```javascript
 async diffieHellman(publicKey: Uint8Array): Promise<secretKey: Uint8Array>
@@ -53,7 +53,7 @@ In a mobile wallet runtime with private key custody, it ensures that the private
 Alternatively, if we treat the shared secret key as private information, wallets could instead expose a direct encryption method that takes the encryptable payload as input:
 
 ```javascript
-async encryptMessage(publicKey: Uint8Array, message: Uint8Array): Promise<encryptedMessage: Uint8Array>
+async encryptMessage(publicKey: Uint8Array, message: Uint8Array): Promise<{encryptedMessage: Uint8Array, nonce: u32}>
 ```
 
 This function, while more opinionated about the intended usage of the shared secret key, has the added benefit of never exposing the shared secret key to any third party code executing in the runtime.
