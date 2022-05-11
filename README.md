@@ -1,4 +1,5 @@
 # spec
+
 Design Documents on the Dialect Smart Messaging Standard
 
 ## Overview 
@@ -12,25 +13,24 @@ Design Documents on the Dialect Smart Messaging Standard
 
 ## Message persistence
 
-Read the message persistence spec spec [here](PERSISTENCE.md).
+Read the message persistence spec spec [here](01_PERSISTENCE.md).
 
 ## Schema, content & interactivity
 
-Read the schema, content & interactivity spec [here](SCHEMA.md).
+Read the schema, content & interactivity spec [here](02_SCHEMA.md).
 
 ## Access control
 
-Read the access control spec [here](ACCESS_CONTROL.md).
+Read the access control spec [here](03_ACCESS_CONTROL.md).
 
 ## Tokenization
 
-Read the message tokenization spec [here](TOKENIZATION.md).
+Read the message tokenization spec [here](04_TOKENIZATION.md).
 
 ## Encryption
 
-Read the encryption spec [here](ENCRYPTION.md).
+Read the encryption spec [here](05_ENCRYPTION.md).
 
 ## Interoperability
 
-Read the interopability spec [here](INTEROPERABILITY.md).
-
+Read the interopability spec [here](06_INTEROPERABILITY.md).

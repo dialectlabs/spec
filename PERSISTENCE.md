@@ -1,3 +1,0 @@
-# Message Persistence
-
-Coming soon.
