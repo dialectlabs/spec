@@ -44,9 +44,9 @@ async diffieHellman(publicKey: Uint8Array): Promise<secretKey: Uint8Array>
 
 Rather than returning the `Curve25519` representation of the user's keypair, this method returns the derived, shared secret key.
 
-In a web extension enironment, this means that any dapps calling this method over the extension's JSON RPC API would never have access to any representation of the users' private key, in the same way that `signTransaction` and other existing methods never do.
+In a web extension environment, any dapps calling this method over the extension's JSON RPC API would never have access to any representation of the users' private key, in the same way that `signTransaction` and other existing methods never do.
 
-In a mobile wallet runtime with private key custody, it ensures that the private key is never being directly accessed by any third party code.
+In a mobile wallet runtime with private key custody, the private key is never being directly accessed by any third party code.
 
 ### Treating the shared secret key as private
 
