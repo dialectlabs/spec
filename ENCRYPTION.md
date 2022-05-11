@@ -50,13 +50,14 @@ In a mobile wallet runtime with private key custody, it ensures that the private
 
 ### Treating the shared secret key as private
 
-Alternatively, if we treat the shared secret key as private information, wallets could instead expose a direct encryption method that takes the encryptable payload as input:
+Alternatively, if we treat the shared secret key as private information, wallets could instead expose a direct encryption and decryption methods that take the encryptable payload or encrypted payload respectively:
 
 ```javascript
-async encryptMessage(publicKey: Uint8Array, message: Uint8Array): Promise<{encryptedMessage: Uint8Array, nonce: u32}>
+async encryptMessage(publicKey: Uint8Array, message: Uint8Array, nonce: Uint8Array): Promise<{encryptedMessage: Uint8Array}>
+async decryptMessage(publicKey: Uint8Array, encryptedMessage: Uint8Array, nonce: Uint8Array): Promise<{message: Uint8Array}>
 ```
 
-This function, while more opinionated about the intended usage of the shared secret key, has the added benefit of never exposing the shared secret key to any third party code executing in the runtime.
+These functions, while more opinionated about the intended usage of the shared secret key, have the added benefit of never exposing the shared secret key to any third party code executing in the runtime.
 
 ## Limitations & looking ahead
 
