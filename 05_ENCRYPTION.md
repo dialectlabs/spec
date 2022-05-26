@@ -12,7 +12,7 @@ It is an open question whether asymmetric keypairs typically used for signing sh
 
 ## Proposal
 
-We propose the addition of a two methods to wallet APIs for performing encryption & decryption:
+We propose the addition of two methods to wallet APIs for performing encryption & decryption:
 
 ```javascript
 // both methods use the wallet instance's privateKey
