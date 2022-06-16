@@ -16,16 +16,16 @@ We propose the addition of two methods to wallet APIs for performing encryption 
 
 ```javascript
 // both methods use the wallet instance's privateKey
-async encrypt(options: { data: Uint8Array, publicKey: Uint8Array, nonce?: Uint8Array, version?: enum }): Promise<{data: Uint8Array, nonce: Uint8Array, version: enum }> {}
-async decrypt(options: { data: Uint8Array, publicKey: Uint8Array, nonce: Uint8Array, version?: enum }): Promise<{data: Uint8Array, version: enum }> {}
+async decrypt(data: Uint8Array, publicKey: Uint8Array, nonce: Uint8Array, options?: { cipher?: enum }): Promise<{data: Uint8Array, cipher: enum }> {}
+async encrypt(data: Uint8Array, publicKey: Uint8Array, options?: { cipher?: enum }): Promise<{data: Uint8Array, nonce: Uint8Array, cipher: enum }> {}
 ```
 
 These methods are inspired by the Metamask [encrypt](https://metamask.github.io/eth-sig-util/modules.html#encrypt) & [decrypt](https://metamask.github.io/eth-sig-util/modules.html#decrypt) standards, with some adjustments.
 
 - `data` is the payload to encrypt or decrypt.
 - `publicKey` is the public key of the other party with whom the wallet would like to send and receive encrypted data.
-- `nonce` is an encryption nonce, & marked as optional in `encrypt`. If not provided, the encrypt method will generate and return a nonce. Otherwise, the provided nonce will be returned.
-- `version` is a version specifier for what standard is being used for encryption. If none is provided to either encrypt or decrypt, a default will be used.
+- `nonce` is an encryption nonce. A randomly generated value is returned from every call to `encrypted`, and must be stored for use in subsequent calls to `decrypt`.
+- `cipher` is an optional specifier for what standard is being used for encryption. If none is provided to either `encrypt` or `decrypt`, a default will be used & returned from the method.
 
 ### Security
 
